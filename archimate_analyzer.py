@@ -1,8 +1,11 @@
 import xml.etree.ElementTree as ET
 import networkx as nx
+import tkinter
 from dataclasses import dataclass
+
 from typing import List, Dict, Optional
 import json
+
 
 @dataclass
 class ArchiMateElement:
@@ -13,6 +16,7 @@ class ArchiMateElement:
     relationships: List[str]
     properties: Dict[str, str]
 
+
 class ArchiMateAnalyzer:
     def __init__(self):
         self.elements = {}
@@ -21,9 +25,13 @@ class ArchiMateAnalyzer:
 
         # Define ArchiMate layers
         self.layers = {
-            'business': ['business-actor', 'business-role', 'business-process', 'business-function'],
-            'application': ['application-component', 'application-service', 'application-interface'],
-            'technology': ['node', 'device', 'system-software', 'technology-service']
+            'business': ['business-actor', 'business-role',
+                         'business-process',
+                         'business-function'],
+            'application': ['application-component', 'application-service',
+                            'application-interface'],
+            'technology': ['node', 'device', 'system-software',
+                           'technology-service']
         }
 
         # Define common risks by element type
@@ -149,11 +157,15 @@ class ArchiMateAnalyzer:
             # Check connectivity
             connections = list(self.graph.neighbors(element_id))
             if len(connections) > 5:
-                risks.append(f"High coupling: {element.name} has many dependencies")
+                risks.append(
+                    f"High coupling: {element.name} has many dependencies"
+                )
 
             # Check layer alignment
             if not self._check_layer_alignment(element):
-                risks.append(f"Layer misalignment: {element.name} has cross-layer dependencies")
+                risks.append(
+                    f"Layer misalignment: {element.name} has cross-layer dependencies"
+                )
 
             element_analysis.append({
                 'id': element_id,
@@ -338,6 +350,7 @@ class ArchiMateAnalyzer:
                 layer_graphs[source_layer].add_edge(rel['source'], rel['target'])
 
         return layer_graphs
+
 
 # Example usage
 if __name__ == "__main__":
