@@ -1,0 +1,20 @@
+{
+    "elements": [],
+    "relationships": [],
+    "layers": {
+        "business": {
+            "elements": 0,
+            "dependencies": 0
+        },
+        "application": {
+            "elements": 0,
+            "dependencies": 0
+        },
+        "technology": {
+            "elements": 0,
+            "dependencies": 0
+        }
+    },
+    "risks": [],
+    "recommendations": []
+}
